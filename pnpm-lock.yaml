@@ -97,9 +97,15 @@ importers:
       '@prisma/client':
         specifier: ^6
         version: 6.19.2(prisma@6.19.2(typescript@5.9.2))(typescript@5.9.2)
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
     devDependencies:
+      '@types/node':
+        specifier: ^22.15.3
+        version: 22.15.3
       prisma:
-        specifier: ^6.19.2
+        specifier: '6'
         version: 6.19.2(typescript@5.9.2)
 
   packages/eslint-config:
@@ -1580,6 +1586,7 @@ packages:
   typescript@5.9.2:
     resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
     engines: {node: '>=14.17'}
+    hasBin: true
 
   unbox-primitive@1.1.0:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
