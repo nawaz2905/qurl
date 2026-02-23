@@ -15,38 +15,38 @@ datasource db {
 }
 
 model User {
-  id      String   @id @default(uuid())
-  email   String   @unique
-  password  String
-  createdAt  DateTime   @default(now())
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
 
-  url       Url[]
+  urls         Url[]
 
   @@index([createdAt])
-  
 }
 
 model Url {
-  id        String      @id @default(uuid())
-  userId     String
+  id          String   @id @default(uuid())
+  userId      String
   originalUrl String
   shortCode   String   @unique
   fraudScore  Int
-  clicks        DateTime   @default(now())
-  createdAt     DateTime   @default(now())
+  clicks      Int      @default(0)
+  createdAt   DateTime @default(now())
 
-  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clicksData  Click[]
+
   @@index([userId])
   @@index([createdAt])
-
 }
 
-model click {
-  id          String     @id @default(uuid())
-  urlId        String 
-  createdAt     DateTime
-  
-  url           Url        @relation(fields: [urlId], references: [id], onDelete: Cascade)
+model Click {
+  id        String   @id @default(uuid())
+  urlId     String
+  createdAt DateTime @default(now())
+
+  url       Url      @relation(fields: [urlId], references: [id], onDelete: Cascade)
 
   @@index([urlId])
   @@index([createdAt])
