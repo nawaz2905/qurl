@@ -3,5 +3,7 @@
     {
       "mode": "auto"
     }
-  ]
+  ],
+  "typescript.suggest.enabled": false,
+  "javascript.suggest.enabled": false
 }

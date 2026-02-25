@@ -1,3 +1,4 @@
-export * from "./ai";
-export * from "./rules";
-export * from "./types";
+
+export { fraudScore } from "./scorer";
+export type { FinalResult } from "./types";
+

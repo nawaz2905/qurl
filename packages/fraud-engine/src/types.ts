@@ -11,4 +11,5 @@ export interface AiResult {
 export interface FinalResult {
     score: number;
     reasons: string[];
+    block: boolean;
 }
