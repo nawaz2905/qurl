@@ -160,6 +160,12 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
+  packages/redis:
+    dependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+
   packages/typescript-config: {}
 
   packages/ui:
