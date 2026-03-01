@@ -1,0 +1,1 @@
+export const JWT_PASSCODE = process.env.JWT_PASSCODE || "PasswordIsStrong"
