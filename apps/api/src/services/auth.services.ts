@@ -20,7 +20,7 @@ export async function signup(email: string, password:string){
             password: hashed
         }
     });
-    return user
+    return user;
 
 }
 
@@ -42,6 +42,6 @@ export async function signin(email: string , password: string){
         {userId: user.id},
         JWT_PASSCODE
     )
-    return token
+    return token;
 
 }
