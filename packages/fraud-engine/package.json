@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "exports": {
-    "./fraud": "./dist/index.js"
+    "./fraud": "./src/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

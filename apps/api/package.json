@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,12 +19,15 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "nanoid": "^5.1.6",
-    "zod": "^4.3.6",
-    "@repo/db": "workspace:*"
+    "zod": "^4.3.6"
+    
   },
   "devDependencies": {
     "@repo/backend-common": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/redis":"workspace:*"
+    "@repo/redis":"workspace:*",
+    "@repo/db":"workspace:*",
+    "@repo/fraud-engine":"workspace:*"
+    
   }
 }
