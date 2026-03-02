@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "bcrypt": "^6.0.0",
@@ -20,14 +21,12 @@
     "jsonwebtoken": "^9.0.3",
     "nanoid": "^5.1.6",
     "zod": "^4.3.6"
-    
   },
   "devDependencies": {
     "@repo/backend-common": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@repo/redis":"workspace:*",
-    "@repo/db":"workspace:*",
-    "@repo/fraud-engine":"workspace:*"
-    
+    "@repo/db": "workspace:*",
+    "@repo/fraud-engine": "workspace:*",
+    "@repo/redis": "workspace:*",
+    "@repo/typescript-config": "workspace:*"
   }
 }
