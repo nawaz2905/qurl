@@ -1,14 +1,14 @@
-import {prisma} from "@repo/db/client";
+import { prisma } from "@repo/db/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {JWT_PASSCODE} from "@repo/backend-common/config"
+import { JWT_PASSCODE } from "@repo/backend-common/config"
 
-export async function signup(email: string, password:string){
+export async function signup(email: string, password: string) {
     const existing = await prisma.user.findUnique({
-        where: {email},
+        where: { email },
     });
 
-    if(existing){
+    if (existing) {
         throw new Error("User alredy exist")
     }
 
@@ -24,22 +24,22 @@ export async function signup(email: string, password:string){
 
 }
 
-export async function signin(email: string , password: string){
+export async function signin(email: string, password: string) {
     const user = await prisma.user.findUnique({
-        where:{email},
+        where: { email },
     });
 
-    if(!user){
+    if (!user) {
         throw new Error("invalid credentials");
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if(!passwordMatch){
+    if (!passwordMatch) {
         throw new Error("Worng password!")
     }
     const token = jwt.sign(
-        {userId: user.id},
+        { userId: user.id },
         JWT_PASSCODE
     )
     return token;

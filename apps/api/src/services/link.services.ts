@@ -1,37 +1,37 @@
-import {prisma} from "@repo/db/client";
-import {fraudScore} from "@repo/fraud-engine/fraud";
-import {generateShortCode} from "../utils/nanoid";
+import { prisma } from "@repo/db/client";
+import { fraudScore } from "@repo/fraud-engine/fraud";
+import { generateShortCode } from "../utils/nanoid";
 
-interface createShortLinkInput{
+interface createShortLinkInput {
     url: string,
-    userId? : string
+    userId?: string
 }
 
 export async function createShortLink({
     url,
     userId
-}:createShortLinkInput){
+}: createShortLinkInput) {
 
     //fraud check
     const fraud = await fraudScore(url);
 
-    if(fraud.block){
+    if (fraud.block) {
         throw new Error(`Blocked url. Fraud Score ${fraud.score}`);
     }
     // generate shortcode 
     let shortCode = generateShortCode();
 
-    while(
+    while (
         await prisma.url.findUnique({
-            where: {shortCode},
+            where: { shortCode },
         })
-    ){
+    ) {
         shortCode = generateShortCode();
     }
     //saved in db 
 
     const saved = await prisma.url.create({
-        deta:{
+        deta: {
             originalUrl: url,
             shortCode,
             fraudScore: fraud.score,
