@@ -1,25 +1,60 @@
-import {Request, Response} from "express";
-import {handleRedirect} from "../services/redirect.services";
+import { Request, Response } from 'express'
+import { signupSchema, signinSchema } from "../schemas/auth.schema";
+import { signin, signup } from "../services/auth.services";
 
-export async function redirectHandler(req: Request, res: Response){
-    try{
-        const {shortCode} = req.params;
 
-        if (!shortCode || typeof shortCode !== 'string') {
+export async function signupHandler(req: Request, res: Response) {
+    try {
+        const parsed = signupSchema.safeParse(req.body);
+
+        if (!parsed.success) {
             return res.status(400).json({
                 success: false,
-                error: "Invalid short code"
+                message: "invalid fromat"
             });
         }
 
-        const originalUrl = await handleRedirect(shortCode);
-        return res.redirect(originalUrl)
+        const user = await signup(parsed.data.email, parsed.data.password);
 
-    }catch(e: any){
-        res.status(404).json({
+        return res.status(201).json({
+            success: true,
+            message: "Successfully signed up"
+        });
+
+
+    } catch (error: any) {
+        return res.status(404).json({
             success: false,
-            error: e.message || "Link not found"
-        })
+            error: error.message
+        });
 
     }
+}
+
+export async function signinHandler(req: Request, res: Response) {
+    try{
+        const parsed = await signinSchema.safeParse(req.body);
+
+        if(!parsed.success){
+            return res.status(400).json({
+                success: false,
+                error: parsed.error.flatten(),
+            });
+        }
+
+        const token = await signin(parsed.data.email, parsed.data.password);
+        return res.status(201).json({
+            success: true,
+            token,
+            message: "Sigin in successfull"
+
+        });
+
+    }catch(error: any ){
+        return res.status(404).json({
+            success: false,
+            error: error.message
+        })
+    }
+
 }
