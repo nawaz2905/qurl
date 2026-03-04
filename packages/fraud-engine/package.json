@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "exports": {
-    "./fraud": "./src/index.js"
+    "./fraud": "./dist/index.js"
   },
   "scripts": {
+    "build" :"tsc -b",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "types":"commonjs",
   "dependencies": {
     "@google/genai": "^1.42.0",
     "@repo/typescript-config": "workspace:*",

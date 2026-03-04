@@ -2,16 +2,18 @@
   "name": "@repo/redis",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "exports": {
     ".": "./src/index.ts"
   },
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "types":"commonjs",
   "dependencies": {
     "@repo/typescript-config": "workspace:*",
     "dotenv": "^17.3.1",
