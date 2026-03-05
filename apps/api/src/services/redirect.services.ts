@@ -26,7 +26,7 @@ export async function handleRedirect(shortCode: string) {
     //increament clicks counter
     await prisma.url.update({
         where: { shortCode },
-        data: { clicks: { increament: 1 } },
+        data: { clicks: { increment: 1 } },
     });
 
     // save click event

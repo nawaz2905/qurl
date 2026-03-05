@@ -4,7 +4,7 @@ import { generateShortCode } from "../utils/nanoid";
 
 interface createShortLinkInput {
     url: string,
-    userId?: string
+    userId: string
 }
 
 export async function createShortLink({
@@ -31,7 +31,7 @@ export async function createShortLink({
     //saved in db 
 
     const saved = await prisma.url.create({
-        deta: {
+        data: {
             originalUrl: url,
             shortCode,
             fraudScore: fraud.score,

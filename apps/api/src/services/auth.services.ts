@@ -17,7 +17,7 @@ export async function signup(email: string, password: string) {
     const user = await prisma.user.create({
         data: {
             email,
-            password: hashed
+            passwordHash: hashed
         }
     });
     return user;
@@ -33,7 +33,7 @@ export async function signin(email: string, password: string) {
         throw new Error("invalid credentials");
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, user.passwordHash);
 
     if (!passwordMatch) {
         throw new Error("Worng password!")
