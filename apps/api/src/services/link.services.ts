@@ -12,8 +12,8 @@ export async function createShortLink({
     userId
 }: createShortLinkInput) {
 
-    //fraud check
     const fraud = await fraudScore(url);
+    console.log(`[Link Service] Fraud Check Result: Score=${fraud.score}, Blocked=${fraud.block}`);
 
     if (fraud.block) {
         throw new Error(`Blocked url. Fraud Score ${fraud.score}`);
@@ -41,8 +41,10 @@ export async function createShortLink({
 
     return {
         id: saved.id,
+        shortlink: `http://localhost:5000/${saved.shortCode}`,
         shortCode: saved.shortCode,
         fraudScore: saved.fraudScore,
+        fraudInfo: fraud, // Temporary for debug
         clicks: saved.clicks,
         createdAt: saved.createdAt,
     };

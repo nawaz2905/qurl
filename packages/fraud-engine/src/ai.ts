@@ -49,7 +49,12 @@ export async function aiCheck(url: string): Promise<AiResult> {
             reasons: Array.isArray(parsed.reasons) ? parsed.reasons : []
         };
 
-    } catch (error) {
+    } catch (error: any) {
+        const fs = require('fs');
+        const path = require('path');
+        const logPath = path.join(process.cwd(), 'fraud_ai_error.log');
+        fs.appendFileSync(logPath, `[${new Date().toISOString()}] AI Error: ${error.message}\nStack: ${error.stack}\n`);
+
         return {
             score: 0,
             reasons: ["AI analysis failed"]

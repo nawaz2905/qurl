@@ -1,24 +1,24 @@
-import {Request, Response} from "express";
-import {handleRedirect} from "../services/redirect.services";
+import { Request, Response } from "express";
+import { handleRedirect } from "../services/redirect.services";
 
-export async function redirectHandler(req: Request, res: Response){
-    try{
-        const {shortCode} = req.params;
+export async function redirectHandler(req: Request, res: Response) {
+    try {
+        const { shortcode } = req.params;
 
-        if (!shortCode || typeof shortCode !== 'string') {
+        if (!shortcode || typeof shortcode !== 'string') {
             return res.status(400).json({
                 success: false,
                 error: "Invalid short code"
             });
         }
 
-        const originalUrl = await handleRedirect(shortCode);
-        return res.redirect(originalUrl)
+        const originalUrl = await handleRedirect(shortcode);
+        return res.redirect(originalUrl);
 
-    }catch(e: any){
+    } catch (e: any) {
         res.status(404).json({
             success: false,
-            error: e.message || "Link not found"
+            error: "Shortcode not found"
         })
 
     }

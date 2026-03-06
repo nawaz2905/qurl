@@ -1,31 +1,33 @@
-import {Request, Response} from "express"
-import {linkSchema} from "../schemas/link.schema"
-import {createShortLink} from "../services/link.services"
+import { Request, Response } from "express"
+import { linkSchema } from "../schemas/link.schema"
+import { createShortLink } from "../services/link.services"
 
 
-export async function createLink(req: Request, res:Response){
-    try{
+export async function createLink(req: Request, res: Response) {
+    try {
         const parsed = await linkSchema.safeParse(req.body);
 
-        if(!parsed.success){
+        if (!parsed.success) {
             return res.status(400).json({
                 success: false,
-                error:parsed.error.flatten(),
+                error: parsed.error.flatten(),
             });
         }
         const result = await createShortLink({
             url: parsed.data.url,
-            userId: (req as any ).userId,
+            userId: (req as any).userId,
         });
         return res.status(201).json({
             success: true,
-            data: result
+            shortlink: result.shortlink,
+            fraudScore: (result as any).fraudScore, // For debug
+            fraudInfo: (result as any).fraudInfo // For debug
         });
 
-    }catch(error: any ){
+    } catch (error: any) {
         return res.status(400).json({
             success: false,
-            error: error.message 
+            error: error.message
         });
     }
 }
