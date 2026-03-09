@@ -15,7 +15,7 @@ export async function fraudScore(url: string): Promise<FinalResult> {
     );
     console.log(`[Fraud Scorer] Final Score: ${finalScore}`);
 
-    const block = finalScore >= 75;
+    const block = finalScore > 50;
 
     return {
         score: finalScore,

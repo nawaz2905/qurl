@@ -1,0 +1,120 @@
+[2026-03-08T19:43:21.256Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:44:17.373Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:45:04.003Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:45:53.726Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:52:03.060Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:52:55.790Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:53:33.672Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:53:47.538Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:54:05.244Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:54:09.219Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:54:31.676Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-03-08T19:58:01.591Z] AI Error: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:30:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
