@@ -29,7 +29,7 @@ export async function aiCheck(url: string): Promise<AiResult> {
 
     try {
         const response = await genAI.models.generateContent({
-            model: "gemini-1.5-flash",
+            model: "gemini-2.5-flash",
             contents: [
                 {
                     role: "user",
