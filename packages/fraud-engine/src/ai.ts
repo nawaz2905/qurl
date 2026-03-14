@@ -56,7 +56,7 @@ export async function aiCheck(url: string): Promise<AiResult> {
         fs.appendFileSync(logPath, `[${new Date().toISOString()}] AI Error: ${error.message}\nStack: ${error.stack}\n`);
 
         return {
-            score: 0,
+            score: 0, 
             reasons: ["AI analysis failed"]
         };
     }
