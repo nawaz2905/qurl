@@ -49,3 +49,10 @@ export async function createShortLink({
         createdAt: saved.createdAt,
     };
 }
+
+export async function getUserLinks(userId: string) {
+    return await prisma.url.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+    });
+}

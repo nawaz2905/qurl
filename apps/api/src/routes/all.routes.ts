@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import {signupHandler, signinHandler} from "../controllers/auth.routes";
 import {redirectHandler} from "../controllers/redirect.routes"
-import {createLink} from "../controllers/link.routes";
+import {createLink, getLinks} from "../controllers/link.routes";
 
 import {rateLimitMiddleware} from "../middlewares/rateLimit.middleware"
 import {authMiddleware} from "../middlewares/auth.middleware";
@@ -13,6 +13,7 @@ router.post("/api/v1/signup",signupHandler);
 router.post("/api/v1/signin", signinHandler);
 
 router.post("/api/v1/link",authMiddleware,rateLimitMiddleware, createLink);
+router.get("/api/v1/links", authMiddleware, getLinks);
 
 router.get("/:shortcode", redirectHandler)
 
