@@ -24,10 +24,11 @@ const FeatureCard = ({ icon, title, text }: { icon: string; title: string; text:
 );
 
 export default function Home() {
-  const gridSquares = Array.from({ length: 120 });
+
 
   return (
-    <div className="flex flex-col items-center w-full min-h-screen selection:bg-primary selection:text-white">
+    <div className="flex flex-col items-center w-full min-h-screen selection:bg-primary selection:text-white grid-background">
+
       {/* Navbar */}
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl h-16 bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg shadow-black/5 rounded-2xl flex items-center justify-between px-8 z-50">
         <div className="flex items-center gap-3">
@@ -53,12 +54,8 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative w-full flex flex-col items-center text-center pt-40 pb-20 px-6 overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 -z-10 bg-white">
-          <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] grid-rows-[repeat(auto-fill,minmax(100px,1fr))]">
-            {gridSquares.map((_, i) => (
-              <div key={i} className="border-[0.5px] border-primary" />
-            ))}
-          </div>
+        <div className="absolute inset-0 -z-10">
+
           <div 
             className="absolute top-0 left-[-50%] w-[200%] h-full bg-linear-to-r from-transparent via-primary/5 to-transparent -skew-x-12 blur-[100px] animate-pulse"
             style={{ animationDuration: '8s' }}
