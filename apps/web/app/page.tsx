@@ -3,12 +3,12 @@ import Link from "next/link";
 const Icon = ({ name, className }: { name: string; className?: string }) => {
   const baseClasses = `w-6 h-6 ${className || ""}`;
   switch (name) {
-    case 'bot': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16v2M16 16v2"/></svg>;
-    case 'shield': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
-    case 'chart': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><path d="M18 20V10M12 20V4M6 20v-6"/></svg>;
-    case 'globe': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>;
-    case 'link': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>;
-    case 'api': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>;
+    case 'bot': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" /><path d="M12 7v4M8 16v2M16 16v2" /></svg>;
+    case 'shield': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>;
+    case 'chart': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><path d="M18 20V10M12 20V4M6 20v-6" /></svg>;
+    case 'globe': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>;
+    case 'link': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>;
+    case 'api': return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={baseClasses}><path d="M16 18l6-6-6-6M8 6l-6 6 6 6" /></svg>;
     default: return null;
   }
 };
@@ -33,9 +33,9 @@ export default function Home() {
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl h-16 bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg shadow-black/5 rounded-2xl flex items-center justify-between px-8 z-50">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-primary rounded-xl rotate-12 group-hover:rotate-0 transition-transform shadow-lg shadow-primary/20" />
-          <span className="font-black text-xl tracking-tight text-gray-900">SecureLink<span className="text-gray-400 font-normal">.ai</span></span>
+          <span className="font-black text-xl tracking-tight text-gray-900">Qurl<span className="text-gray-400 font-normal"> AI</span></span>
         </div>
-        
+
         <div className="hidden md:flex items-center gap-10">
           <a href="#" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Features</a>
           <a href="#" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Security</a>
@@ -44,8 +44,8 @@ export default function Home() {
         </div>
 
         <div className="flex items-center gap-6">
-          <a href="#" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Log In</a>
-          <Link href="/dashboard" className="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary-light hover:-translate-y-0.5 transition-all shadow-md shadow-primary/20 active:scale-95">
+          <Link href="/login" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Log In</Link>
+          <Link href="/login" className="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary-light hover:-translate-y-0.5 transition-all shadow-md shadow-primary/20 active:scale-95">
             Get Started
           </Link>
         </div>
@@ -56,7 +56,7 @@ export default function Home() {
         {/* Background Effects */}
         <div className="absolute inset-0 -z-10">
 
-          <div 
+          <div
             className="absolute top-0 left-[-50%] w-[200%] h-full bg-linear-to-r from-transparent via-primary/5 to-transparent -skew-x-12 blur-[100px] animate-pulse"
             style={{ animationDuration: '8s' }}
           />
@@ -73,9 +73,9 @@ export default function Home() {
             Shorten Links. <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-orange-400">Block Fraud.</span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-gray-500 max-w-3xl mx-auto leading-relaxed mb-12">
-            The intelligent URL shortener that uses AI to detect and block bots, phishing 
+            The intelligent URL shortener that uses AI to detect and block bots, phishing
             attempts, and fraudulent traffic before they reach your destination.
           </p>
 
@@ -103,10 +103,10 @@ export default function Home() {
                 <h4 className="font-bold text-lg mb-8">Traffic Overview</h4>
                 <div className="flex items-end gap-3 h-64">
                   {[40, 65, 50, 95, 60, 85, 45, 75, 55, 100, 65].map((h, i) => (
-                    <div 
-                      key={i} 
-                      className={`flex-1 rounded-t-lg transition-all duration-1000 ${h > 90 ? 'bg-primary' : 'bg-orange-100'}`} 
-                      style={{ height: `${h}%` }} 
+                    <div
+                      key={i}
+                      className={`flex-1 rounded-t-lg transition-all duration-1000 ${h > 90 ? 'bg-primary' : 'bg-orange-100'}`}
+                      style={{ height: `${h}%` }}
                     />
                   ))}
                 </div>
@@ -130,42 +130,42 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="w-full max-w-7xl px-6 py-32 grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-        <FeatureCard 
-          icon="bot" 
-          title="AI Bot Detection" 
-          text="Automatically identify and block non-human traffic from scraping your content or inflating metrics." 
+        <FeatureCard
+          icon="bot"
+          title="AI Bot Detection"
+          text="Automatically identify and block non-human traffic from scraping your content or inflating metrics."
         />
-        <FeatureCard 
-          icon="shield" 
-          title="Phishing Prevention" 
-          text="Real-time scanning prevents your domains from being used for malicious redirection attacks." 
+        <FeatureCard
+          icon="shield"
+          title="Phishing Prevention"
+          text="Real-time scanning prevents your domains from being used for malicious redirection attacks."
         />
-        <FeatureCard 
-          icon="chart" 
-          title="Clean Analytics" 
-          text="Get true click data. We filter out scammers, crawlers, and bots so you see real engagement." 
+        <FeatureCard
+          icon="chart"
+          title="Clean Analytics"
+          text="Get true click data. We filter out scammers, crawlers, and bots so you see real engagement."
         />
-        <FeatureCard 
-          icon="globe" 
-          title="Geo-Fencing" 
-          text="Restrict access to your links based on country or region to prevent unauthorized global traffic." 
+        <FeatureCard
+          icon="globe"
+          title="Geo-Fencing"
+          text="Restrict access to your links based on country or region to prevent unauthorized global traffic."
         />
-        <FeatureCard 
-          icon="link" 
-          title="Custom Domains" 
-          text="Use your own branded domain while leveraging our powerful protection infrastructure." 
+        <FeatureCard
+          icon="link"
+          title="Custom Domains"
+          text="Use your own branded domain while leveraging our powerful protection infrastructure."
         />
-        <FeatureCard 
-          icon="api" 
-          title="Developer API" 
-          text="Integrate fraud-resistant link generation directly into your own applications with our REST API." 
+        <FeatureCard
+          icon="api"
+          title="Developer API"
+          text="Integrate fraud-resistant link generation directly into your own applications with our REST API."
         />
       </section>
 
       {/* CTA Section */}
       <section className="w-[92%] max-w-7xl relative mx-auto my-20 p-12 md:p-24 bg-orange-50 rounded-[48px] overflow-hidden flex flex-col lg:flex-row items-center gap-16 border border-orange-100 shadow-xl shadow-orange-500/5">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-primary/10 via-transparent to-transparent opacity-50 blur-[100px]" />
-        
+
         <div className="relative z-10 flex-1 text-center lg:text-left">
           <h2 className="text-4xl md:text-6xl font-black leading-tight mb-8 text-gray-900">Ready to secure your traffic?</h2>
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto lg:mx-0 font-medium">Join 10,000+ marketers and developers who trust SecureLink to protect their digital assets.</p>

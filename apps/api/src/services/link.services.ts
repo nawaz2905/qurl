@@ -41,6 +41,7 @@ export async function createShortLink({
 
     return {
         id: saved.id,
+        originalUrl: saved.originalUrl,
         shortlink: `http://localhost:5000/${saved.shortCode}`,
         shortCode: saved.shortCode,
         fraudScore: saved.fraudScore,
