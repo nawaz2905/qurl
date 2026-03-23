@@ -15,7 +15,7 @@ export async function rateLimitMiddleware(
             windowSeconds: 60,
         })
         if (!result.success) {
-            res.status(429).json({
+            return res.status(429).json({
                 success: false,
                 error: "Too many request Please try again later"
             });
