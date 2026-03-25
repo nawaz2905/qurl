@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
-// Athena-inspired Navigation Component
+
 const NavItem = ({ icon, label, active = false, onClick }: { icon: React.ReactNode; label: string; active?: boolean; onClick: () => void }) => (
-  <div 
+  <div
     onClick={onClick}
     className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer ${active
-    ? "bg-[#df5b3e]/10 text-[#df5b3e] shadow-sm"
-    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-    }`}>
+      ? "bg-[#df5b3e]/10 text-[#df5b3e] shadow-sm"
+      : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+      }`}>
     <div className={`w-5 h-5 ${active ? "text-[#df5b3e]" : "text-gray-400"}`}>{icon}</div>
     <span>{label}</span>
   </div>
@@ -26,7 +26,7 @@ const BottomNavItem = ({ icon, label, danger = false }: { icon: React.ReactNode;
   </div>
 );
 
-// Refined Result Card for Athena Aesthetic
+
 const ResultCard = ({ title, value, subValue, type = "default", children }: {
   title: string;
   value?: string | number;
@@ -155,9 +155,9 @@ export default function Dashboard() {
 
         <nav className="flex-1 px-4 space-y-1">
           <NavItem active={activeTab === "My Links"} onClick={() => setActiveTab("My Links")} label="My Links" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>} />
-          <NavItem active={activeTab === "Security"} onClick={() => setActiveTab("Security")} label="Security" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>} />
+          {/* <NavItem active={activeTab === "Security"} onClick={() => setActiveTab("Security")} label="Security" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>} /> */}
           <NavItem active={activeTab === "Analytics"} onClick={() => setActiveTab("Analytics")} label="Analytics" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>} />
-          <NavItem active={activeTab === "API Access"} onClick={() => setActiveTab("API Access")} label="API Access" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>} />
+          {/* <NavItem active={activeTab === "API Access"} onClick={() => setActiveTab("API Access")} label="API Access" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>} /> */}
         </nav>
 
         <div className="p-4 border-t border-gray-50 space-y-1 text-left">
@@ -181,7 +181,7 @@ export default function Dashboard() {
           <div className="flex-[2] max-w-xl mx-auto px-4">
             <div className="relative group">
               <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                <svg className="w-4 h-4 text-gray-400 group-focus-within:text-[#df5b3e] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                <svg className="w-4 h-4 text-gray-400 group-focus-within:text-[#df5c3e] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
               </div>
               <input
                 type="text"
@@ -210,16 +210,19 @@ export default function Dashboard() {
                 </div>
                 <button
                   onClick={() => { setShowForm(true); setResult(null); }}
-                  className="px-6 py-3 bg-white border-2 border-gray-900 text-gray-900 text-sm font-black rounded-xl hover:bg-gray-50 transition-all flex items-center gap-3 active:scale-95"
+                  className="px-6 py-3 bg-[#df5b3e]/10 flex items-center justify-center font-black text-[#df5b3e] border border-[#df5b3e]/20 cursor-pointer hover:bg-[#df5b3e]/20 transition-all gap-3 active:scale-95 rounded-2xl"
+                  /*  bg-[#df5b3e]/10 flex items-center justify-center font-black text-[#df5b3e] border border-[#df5b3e]/20 cursor-pointer hover:bg-[#df5b3e]/20 transition-all
+                  bg-[#df5b3e] border-2 border-gray-900 text-gray-900 text-sm font-black rounded-xl hover:bg-gray-50 transition-all flex items-center
+                  */
                 >
-                  new links
+                  + new links
                 </button>
               </div>
 
               {/* Main Area Wrapper */}
               <div className="flex-1 px-10 pb-10 flex flex-col min-h-0 text-left relative">
                 {!showForm && !result && links.length === 0 && !fetching ? (
-                  /* Athena-style Empty State */
+                  
                   <div className="w-full flex-1 flex flex-col items-center justify-center p-20 text-center animate-in fade-in zoom-in duration-500">
                     <div className="w-20 h-20 bg-gray-50 rounded-[28px] flex items-center justify-center mb-8 border border-gray-100">
                       <svg className="w-10 h-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
@@ -234,8 +237,8 @@ export default function Dashboard() {
                     </button>
                   </div>
                 ) : showForm && !result ? (
-                  /* Athena-style centered input form */
-                  <div className="w-full flex-1 flex flex-col items-center justify-center p-20 animate-in fade-in slide-in-from-top-4 duration-500">
+                 
+                  <div className="w-full flex-1 flex flex-col items-center justify-start p-10 px-20 animate-in fade-in slide-in-from-top-4 duration-500">
                     <div className="max-w-xl w-full flex flex-col items-center bg-white p-12 rounded-[40px] border border-gray-100 shadow-2xl shadow-black/5">
                       <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-8 border border-gray-100">
                         <span className="text-3xl text-gray-300 font-black">+</span>
@@ -330,7 +333,7 @@ export default function Dashboard() {
                           <div className="grid md:grid-cols-2 gap-4">
                             {result.fraudInfo.reasons.map((reason: string, i: number) => (
                               <div key={i} className="flex gap-4 items-center p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                                <span className="text-amber-500">⚠️</span>
+                                <span className="text-amber-500 text-bold ">.</span>
                                 <span className="text-base font-black text-gray-900 leading-tight">{reason}</span>
                               </div>
                             ))}
@@ -344,7 +347,7 @@ export default function Dashboard() {
                 ) : (
                   /* Default fallback if on My Links but no state matches */
                   <div className="flex-1 flex items-center justify-center text-gray-400 font-bold">
-                     No active link session. Use "new links" to start.
+                    No active link session. Use "new links" to start.
                   </div>
                 )}
               </div>
@@ -358,8 +361,8 @@ export default function Dashboard() {
               </div>
 
               {/* Link List View */}
-              <div className="flex-1 px-10 pb-10 overflow-x-auto">
-                <div className="bg-white border border-gray-100 rounded-[32px] overflow-hidden shadow-sm animate-in fade-in duration-500">
+              <div className="flex-1 px-10 pb-10 overflow-x-auto  ">
+                <div className="bg-orange-100 transition-all border border-gray-100 rounded-[32px] overflow-hidden shadow-sm animate-in fade-in duration-500">
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr className="bg-gray-50/50 border-b border-gray-50">
@@ -415,11 +418,11 @@ export default function Dashboard() {
 
               {/* Pagination Footer */}
               <footer className="h-16 border-t border-gray-50 bg-white shadow-sm flex items-center justify-between px-10 shrink-0">
-                <div className="text-[10px] font-black text-gray-300 uppercase tracking-widest">
+                <div className="text-[10px] font-black text-black uppercase tracking-widest">
                   Navigation • Page 1 of {Math.ceil(links.length / 10) || 1}
                 </div>
                 <div className="flex gap-3">
-                  <button disabled className="px-5 py-2 text-[10px] font-black text-gray-300 border border-gray-100 rounded-xl uppercase tracking-widest disabled:opacity-50">
+                  <button disabled className="px-5 py-2 text-[10px] font-black text-black border border-gray-100 rounded-xl uppercase tracking-widest disabled:opacity-50">
                     Previous
                   </button>
                   <button disabled={links.length <= 10} className="px-5 py-2 text-[10px] font-black text-gray-300 border border-gray-100 rounded-xl uppercase tracking-widest disabled:opacity-50">
