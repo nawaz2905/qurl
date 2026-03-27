@@ -56,4 +56,19 @@ export async function getUserLinks(userId: string) {
         where: { userId },
         orderBy: { createdAt: "desc" },
     });
-}
+}
+
+export async function deleteShortLink(id: string, userId: string) {
+    const link = await prisma.url.findUnique({
+        where: { id },
+    });
+    if (!link || link.userId !== userId) {
+        throw new Error("Link not found or access forbidden");
+    }
+
+    await prisma.url.delete({
+        where: { id },
+    });
+
+    return { success: true, id };
+}

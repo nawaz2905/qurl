@@ -60,7 +60,7 @@ export default function Dashboard() {
   const [result, setResult] = useState<any>(null);
   const [showForm, setShowForm] = useState(false);
   const [token, setToken] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState("My Links");
+  const [activeTab, setActiveTab] = useState("Analytics");
 
   const fetchLinks = useCallback(async (tokenToUse: string) => {
     setFetching(true);
@@ -121,6 +121,27 @@ export default function Dashboard() {
     }
   };
 
+  const handleDelete = async (id: string) => {
+    if (!token) return;
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/v1/link/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Failed to delete link");
+
+      await fetchLinks(token);
+    } catch (err: any) {
+      console.error("Delete link failed", err);
+      setError(err.message || "Failed to delete link");
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
@@ -154,9 +175,9 @@ export default function Dashboard() {
         </div>
 
         <nav className="flex-1 px-4 space-y-1">
-          <NavItem active={activeTab === "My Links"} onClick={() => setActiveTab("My Links")} label="My Links" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>} />
+          <NavItem active={activeTab === "Analytics"} onClick={() => setActiveTab("Analytics")} label="Analytics" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>} />
           {/* <NavItem active={activeTab === "Security"} onClick={() => setActiveTab("Security")} label="Security" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>} /> */}
-          <NavItem active={activeTab === "Analytics"} onClick={() => setActiveTab("Analytics")} label="Analytics" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>} />
+          <NavItem active={activeTab === "My Links"} onClick={() => setActiveTab("My Links")} label="My Links" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>} />
           {/* <NavItem active={activeTab === "API Access"} onClick={() => setActiveTab("API Access")} label="API Access" icon={<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>} /> */}
         </nav>
 
@@ -200,12 +221,12 @@ export default function Dashboard() {
 
         {/* Content Section */}
         <div className="flex-1 flex flex-col bg-[#fcfcfc] overflow-y-auto">
-          {activeTab === "My Links" ? (
+          {activeTab === "Analytics" ? (
             <div className="flex-1 flex flex-col">
               {/* Header Block */}
               <div className="px-10 py-10 flex justify-between items-center shrink-0 text-left">
                 <div>
-                  <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-2">My link</h1>
+                  <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-2">Analytics</h1>
                   <p className="text-sm font-bold text-gray-400 opacity-60">Shorten, protect and analyze your digital assets.</p>
                 </div>
                 <button
@@ -352,11 +373,11 @@ export default function Dashboard() {
                 )}
               </div>
             </div>
-          ) : activeTab === "Analytics" ? (
+          ) : activeTab === "My Links" ? (
             <div className="flex-1 flex flex-col">
-              {/* Analytics Header */}
+              {/* My Links Header */}
               <div className="px-10 py-10 text-left">
-                <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-2">Analytics</h1>
+                <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-2">My Links</h1>
                 <p className="text-sm font-bold text-gray-400 opacity-60">Track your link performance and security insights.</p>
               </div>
 
@@ -371,6 +392,7 @@ export default function Dashboard() {
                         <th className="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Safety</th>
                         <th className="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Hits</th>
                         <th className="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Created</th>
+                        <th className="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-50 font-bold">
@@ -403,6 +425,14 @@ export default function Dashboard() {
                           </td>
                           <td className="px-8 py-5 text-right text-xs text-gray-400">
                             {new Date(link.createdAt).toLocaleDateString()}
+                          </td>
+                          <td className="px-8 py-5 text-right">
+                            <button
+                              onClick={() => handleDelete(link.id)}
+                              className="px-2 py-1 text-xs font-black text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-all"
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
                       ))}

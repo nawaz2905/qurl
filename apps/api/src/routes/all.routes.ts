@@ -14,6 +14,7 @@ router.post("/api/v1/signin", signinHandler);
 
 router.post("/api/v1/link",authMiddleware,rateLimitMiddleware, createLink);
 router.get("/api/v1/links", authMiddleware, getLinks);
+router.delete("/api/v1/link/:id", authMiddleware, rateLimitMiddleware, deleteLink);
 
 router.get("/:shortcode", redirectHandler)
 
