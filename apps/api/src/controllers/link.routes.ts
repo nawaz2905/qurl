@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { linkSchema } from "../schemas/link.schema"
-import { createShortLink, getUserLinks } from "../services/link.services"
+import { createShortLink, getUserLinks, deleteShortLink } from "../services/link.services"
 
 
 export async function createLink(req: Request, res: Response) {
@@ -39,6 +39,24 @@ export async function getLinks(req: Request, res: Response) {
         return res.status(200).json({
             success: true,
             links,
+        });
+    } catch (error: any) {
+        return res.status(400).json({
+            success: false,
+            error: error.message,
+        });
+    }
+}
+
+export async function deleteLink(req: Request, res: Response) {
+    try {
+        const userId = (req as any).userId;
+        const { id } = req.params;
+
+        const result = await deleteShortLink(id, userId);
+        return res.status(200).json({
+            success: true,
+            ...result,
         });
     } catch (error: any) {
         return res.status(400).json({
