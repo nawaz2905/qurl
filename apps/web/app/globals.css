@@ -5,24 +5,31 @@
   --foreground: #111111;
   --primary: #f26a1b;
   --primary-rgb: 242, 106, 27;
-  --primary-light: #ff9d66;
-  --border: #eeeeee;
-  --muted: #666666;
+  --primary-light: #ff7c33;
+  --primary-dark: #cc5414;
+  --border: rgba(0, 0, 0, 0.04);
+  --muted: #6b7280;
+  --accent: #f26a1b1a;
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
 }
-
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ffffff;
-    --border: #222222;
-    --muted: #888888;
+    --background: #080808;
+    --foreground: #f3f4f6;
+    --border: rgba(255, 255, 255, 0.08);
+    --muted: #9ca3af;
+    --accent: #f26a1b2a;
+    --glass: rgba(10, 10, 10, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
   }
 }
 
 @theme {
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
   --color-border-custom: var(--border);
   --color-muted-custom: var(--muted);
 }
