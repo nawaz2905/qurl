@@ -39,8 +39,9 @@ export default function LoginPage() {
         setIsLogin(true);
         setError("Account created! Please sign in.");
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Authentication failed";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -87,7 +88,7 @@ export default function LoginPage() {
                 type="password" 
                 required
                 className="w-full px-6 py-5 bg-white/80 border border-gray-100 rounded-[24px] text-base font-bold text-gray-800 focus:outline-none focus:ring-8 focus:ring-primary/5 focus:border-primary/30 transition-all shadow-sm"
-                placeholder="••••••••"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -97,7 +98,7 @@ export default function LoginPage() {
               <div className={`p-5 rounded-2xl text-xs font-bold border flex gap-3 items-start animate-in fade-in slide-in-from-top-2 ${
                 error.includes("created") ? "bg-green-50 text-green-600 border-green-100" : "bg-red-50 text-red-600 border-red-100"
               }`}>
-                <span className="shrink-0">{error.includes("created") ? "✅" : "⚠️"}</span>
+                <span className="shrink-0">{error.includes("created") ? "Success" : "Warning"}</span>
                 <span>{error}</span>
               </div>
             )}
@@ -127,10 +128,15 @@ export default function LoginPage() {
 
         <div className="mt-12 text-center">
           <Link href="/" className="text-xs font-black text-gray-400 hover:text-gray-900 transition-colors uppercase tracking-widest flex items-center justify-center gap-2 group">
-            <span className="group-hover:-translate-x-1 transition-transform">←</span> Back to Homepage
+            <span className="group-hover:-translate-x-1 transition-transform">{"<-"}</span> Back to Homepage
           </Link>
         </div>
       </div>
     </div>
   );
 }
+
+
+
+
+
