@@ -102,20 +102,47 @@ const dashboardTabs: {
   },
 ];
 
-function SidebarItem({ active, label, description, icon, onClick }: { active: boolean; label: string; description: string; icon: ReactNode; onClick: () => void; }) {
+function SidebarItem({
+  active,
+  collapsed,
+  label,
+  description,
+  icon,
+  onClick,
+}: {
+  active: boolean;
+  collapsed: boolean;
+  label: string;
+  description: string;
+  icon: ReactNode;
+  onClick: () => void;
+}) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`w-full rounded-2xl border px-4 py-3 text-left transition ${active ? "border-primary/20 bg-primary/10 text-primary shadow-sm" : "border-transparent bg-transparent text-gray-600 hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"}`}
+      title={collapsed ? label : undefined}
+      className={`transition ${
+        collapsed
+          ? active
+            ? "flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary"
+            : "flex h-12 w-12 items-center justify-center rounded-2xl border border-gray-200 bg-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+          : active
+            ? "w-full rounded-2xl border border-primary/20 bg-primary/10 px-4 py-3 text-left text-primary shadow-sm"
+            : "w-full rounded-2xl border border-transparent px-4 py-3 text-left text-gray-600 hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
+      }`}
     >
-      <div className="flex items-start gap-3">
-        <div className={`mt-0.5 h-5 w-5 ${active ? "text-primary" : "text-gray-400"}`}>{icon}</div>
-        <div className="min-w-0">
-          <div className="text-sm font-bold">{label}</div>
-          <div className="mt-1 text-xs font-medium leading-5 text-gray-400">{description}</div>
+      {collapsed ? (
+        <div className="h-5 w-5">{icon}</div>
+      ) : (
+        <div className="flex items-start gap-3">
+          <div className={`mt-0.5 h-5 w-5 ${active ? "text-primary" : "text-gray-400"}`}>{icon}</div>
+          <div className="min-w-0">
+            <div className="text-sm font-bold">{label}</div>
+            <div className={`mt-1 text-xs font-medium leading-5 ${active ? "text-primary/70" : "text-gray-400"}`}>{description}</div>
+          </div>
         </div>
-      </div>
+      )}
     </button>
   );
 }
@@ -153,6 +180,7 @@ export default function Dashboard() {
   const [result, setResult] = useState<LinkResult | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<DashboardTab>("Overview");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [toast, setToast] = useState<ToastState>(null);
@@ -164,6 +192,10 @@ export default function Dashboard() {
 
     if (savedTab && dashboardTabs.some((tab) => tab.id === savedTab)) {
       setActiveTab(savedTab);
+    }
+    const savedSidebarState = localStorage.getItem("dashboardSidebarCollapsed");
+    if (savedSidebarState === "true") {
+      setSidebarCollapsed(true);
     }
     if (savedUserEmail) setUserEmail(savedUserEmail);
     if (!savedToken) {
@@ -178,6 +210,10 @@ export default function Dashboard() {
   useEffect(() => {
     localStorage.setItem("dashboardTab", activeTab);
   }, [activeTab]);
+
+  useEffect(() => {
+    localStorage.setItem("dashboardSidebarCollapsed", sidebarCollapsed ? "true" : "false");
+  }, [sidebarCollapsed]);
 
   useEffect(() => {
     if (!toast) return;
@@ -329,28 +365,60 @@ export default function Dashboard() {
 
       <div className="flex min-h-screen flex-col lg:h-full lg:min-h-0 lg:flex-row">
         <aside
-          className="scrollbar-hidden w-full border-b border-gray-200 bg-white px-6 py-6 shadow-sm lg:h-full lg:w-80 lg:shrink-0 lg:overflow-y-auto lg:border-b-0 lg:border-r lg:shadow-none"
+          className={`scrollbar-hidden w-full border-b px-6 py-6 shadow-sm transition-all duration-300 lg:h-full lg:shrink-0 lg:overflow-y-auto lg:border-b-0 lg:shadow-none ${
+            sidebarCollapsed
+              ? "border-gray-200 bg-white lg:w-24 lg:px-4"
+              : "border-gray-200 bg-white lg:w-80 lg:border-r"
+          }`}
         >
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary text-sm font-black text-white shadow-md shadow-primary/25">
+          <div className={`flex ${sidebarCollapsed ? "flex-col items-center gap-4" : "items-center justify-between"}`}>
+            {sidebarCollapsed && (
+              <button
+                type="button"
+                onClick={() => setSidebarCollapsed((current) => !current)}
+                title="Expand sidebar"
+                className="flex h-10 w-10 items-center justify-center rounded-2xl border border-gray-200 bg-white text-gray-600 transition hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 6l6 6-6 6M5 5h2v14H5z" />
+                </svg>
+              </button>
+            )}
+
+            <Link href="/" className={`flex items-center ${sidebarCollapsed ? "justify-center" : "gap-3"}`}>
+              <div className={`flex h-9 w-9 items-center justify-center rounded-2xl text-sm font-black text-white shadow-md shadow-primary/25 ${
+                sidebarCollapsed ? "bg-primary shadow-primary/15" : "bg-primary"
+              }`}>
                 Q
               </div>
-              <div>
-                <div className="text-xl font-black tracking-tight text-gray-900">Qurl.ai</div>
-                <div className="text-xs font-medium text-gray-400">Protected link workspace</div>
-              </div>
+              {!sidebarCollapsed && (
+                <div>
+                  <div className="text-xl font-black tracking-tight text-gray-900">Qurl.ai</div>
+                  <div className="text-xs font-medium text-gray-400">Protected link workspace</div>
+                </div>
+              )}
             </Link>
-            <div className="rounded-full bg-green-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-green-700">
-              Active
-            </div>
+
+            {!sidebarCollapsed && (
+              <button
+                type="button"
+                onClick={() => setSidebarCollapsed((current) => !current)}
+                title="Collapse sidebar"
+                className="flex h-10 w-10 items-center justify-center rounded-2xl border border-gray-200 bg-white text-gray-600 transition hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 6l-6 6 6 6M17 5h2v14h-2z" />
+                </svg>
+              </button>
+            )}
           </div>
 
-          <nav className="mt-8 space-y-2">
+          <nav className={`mt-8 ${sidebarCollapsed ? "flex flex-col items-center gap-4" : "space-y-2"}`}>
             {dashboardTabs.map((tab) => (
               <SidebarItem
                 key={tab.id}
                 active={activeTab === tab.id}
+                collapsed={sidebarCollapsed}
                 label={tab.label}
                 description={tab.description}
                 icon={tab.icon}
@@ -359,20 +427,59 @@ export default function Dashboard() {
             ))}
           </nav>
 
-          <div className="mt-5 rounded-[22px] border border-orange-100 bg-orange-50 px-4 py-3.5">
-            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-primary">Next upgrade</div>
-            <div className="mt-1.5 text-sm font-black tracking-tight text-gray-900">Risk alerts and custom domains</div>
-            <p className="mt-1 max-w-[210px] text-xs font-medium leading-4.5 text-gray-600">
-              Add alerts and branded short links when you are ready to scale.
-            </p>
-          </div>
+          {!sidebarCollapsed && (
+            <div className="mt-5 rounded-[22px] border border-orange-100 bg-orange-50 px-4 py-3.5">
+              <div className="text-[11px] font-black uppercase tracking-[0.18em] text-primary">Next upgrade</div>
+              <div className="mt-1.5 text-sm font-black tracking-tight text-gray-900">Risk alerts and custom domains</div>
+              <p className="mt-1 max-w-[210px] text-xs font-medium leading-4.5 text-gray-600">
+                Add alerts and branded short links when you are ready to scale.
+              </p>
+            </div>
+          )}
 
-          <div className="mt-6 space-y-2 border-t border-gray-200 pt-5">
-            <button type="button" className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-left text-sm font-bold text-gray-700 transition hover:border-gray-300 hover:bg-gray-50">
-              Billing and plan
+          <div
+            className={`mt-6 pt-5 ${
+              sidebarCollapsed
+                ? "flex flex-col items-center gap-4 border-t border-white/8"
+                : "space-y-2 border-t border-gray-200"
+            }`}
+          >
+            <button
+              type="button"
+              title={sidebarCollapsed ? "Billing and plan" : undefined}
+              className={`transition ${
+                sidebarCollapsed
+                  ? "flex h-12 w-12 items-center justify-center rounded-2xl border border-gray-200 bg-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+                  : "w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-left text-sm font-bold text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+              }`}
+            >
+              {sidebarCollapsed ? (
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7H14.5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              ) : (
+                "Billing and plan"
+              )}
             </button>
-            <button type="button" onClick={logout} className="w-full rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-left text-sm font-bold text-red-600 transition hover:border-red-200 hover:bg-red-100">
-              Sign out
+            <button
+              type="button"
+              onClick={logout}
+              title={sidebarCollapsed ? "Sign out" : undefined}
+              className={`transition ${
+                sidebarCollapsed
+                  ? "flex h-12 w-12 items-center justify-center rounded-2xl border border-gray-200 bg-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+                  : "w-full rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-left text-sm font-bold text-red-600 hover:border-red-200 hover:bg-red-100"
+              }`}
+            >
+              {sidebarCollapsed ? (
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                  <path d="M10 17l5-5-5-5" />
+                  <path d="M15 12H3" />
+                </svg>
+              ) : (
+                "Sign out"
+              )}
             </button>
           </div>
         </aside>
