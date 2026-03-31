@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import {signupHandler, signinHandler} from "../controllers/auth.routes";
 import {redirectHandler} from "../controllers/redirect.routes"
-import {createLink, getLinks} from "../controllers/link.routes";
+import {createLink, getLinks, deleteLink} from "../controllers/link.routes";
 
 import {rateLimitMiddleware} from "../middlewares/rateLimit.middleware"
 import {authMiddleware} from "../middlewares/auth.middleware";

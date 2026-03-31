@@ -29,7 +29,7 @@ export async function signin(email: string, password: string) {
         where: { email },
     });
 
-    if (!user) {
+    if (!user || !user.passwordHash) {
         throw new Error("invalid credentials");
     }
 

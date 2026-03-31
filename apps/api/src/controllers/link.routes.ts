@@ -53,10 +53,17 @@ export async function deleteLink(req: Request, res: Response) {
         const userId = (req as any).userId;
         const { id } = req.params;
 
-        const result = await deleteShortLink(id, userId);
+        if (!id || Array.isArray(id)) {
+            return res.status(400).json({
+                success: false,
+                error: "Invalid link id",
+            });
+        }
+
+        await deleteShortLink(id, userId);
         return res.status(200).json({
             success: true,
-            ...result,
+            id,
         });
     } catch (error: any) {
         return res.status(400).json({
