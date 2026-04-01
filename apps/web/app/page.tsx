@@ -27,7 +27,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col items-center w-full min-h-screen selection:bg-primary selection:text-white grid-background">
+    <div className="flex flex-col items-center w-full min-h-screen selection:bg-primary selection:text-white grid-background ">
 
       {/* Navbar */}
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl h-16 bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg shadow-black/5 rounded-2xl flex items-center justify-between px-8 z-50">
@@ -39,7 +39,7 @@ export default function Home() {
         <div className="hidden md:flex items-center gap-10">
           <a href="#" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Features</a>
           <a href="#" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Security</a>
-          <a href="#" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Enterprise</a>
+          <a href="#" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Documentation</a>
           <a href="#" className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Pricing</a>
         </div>
 
@@ -52,9 +52,23 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative w-full flex flex-col items-center text-center pt-40 pb-20 px-6 overflow-hidden">
+      <section className="grid-background relative w-full flex flex-col items-center overflow-hidden px-6 pt-40 pb-20 text-center">
         {/* Background Effects */}
         <div className="absolute inset-0 -z-10">
+          <div
+            className="absolute inset-0 opacity-70"
+            style={{
+              background: "linear-gradient(135deg, rgba(135, 206, 235, 0.16) 0%, rgba(255, 232, 194, 0.16) 50%, rgba(255, 200, 124, 0.16) 100%)",
+            }}
+          />
+          <div
+            className="absolute left-0 top-0 h-[24rem] w-[24rem] rounded-full blur-3xl"
+            style={{ background: "rgba(135, 206, 235, 0.16)" }}
+          />
+          <div
+            className="absolute bottom-0 right-0 h-[22rem] w-[22rem] rounded-full blur-3xl"
+            style={{ background: "rgba(255, 200, 124, 0.16)" }}
+          />
 
           <div
             className="absolute top-0 left-[-50%] w-[200%] h-full bg-linear-to-r from-transparent via-primary/5 to-transparent -skew-x-12 blur-[100px] animate-pulse"
@@ -205,10 +219,18 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="w-full py-16 px-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8 text-gray-500 font-semibold max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-primary rounded-lg opacity-50" />
-          <span className="text-gray-900 font-bold">SecureLink © 2026</span>
+      <footer className="relative w-full min-h-54 overflow-hidden border-t-2 border-gray-300 bg-[radial-gradient(circle_at_top_left,_rgba(242,106,27,0.18),_transparent_34%),linear-gradient(135deg,_#fff8f2_0%,_#fffef9_45%,_#eef6ff_100%)] px-8 py-16 text-gray-500">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(17,24,39,0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(17,24,39,0.14) 1px, transparent 1px)",
+            backgroundSize: "34px 34px",
+          }}
+        />
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-8 font-semibold md:flex-row">
+          <div className="flex items-center gap-2">
+          <span className="text-gray-900 font-bold">Qurl AI © 2026</span>
         </div>
         <div className="flex gap-8 text-sm">
           <a href="#" className="hover:text-primary transition-colors">Twitter</a>
@@ -216,7 +238,8 @@ export default function Home() {
           <a href="#" className="hover:text-primary transition-colors">Documentation</a>
           <a href="#" className="hover:text-primary transition-colors">Terms</a>
         </div>
-        <div className="text-sm">Built with passion for security.</div>
+          <div className="text-sm">Built with 💖 by Nawaz Khan.</div>
+        </div>
       </footer>
     </div>
   );

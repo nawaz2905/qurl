@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
@@ -22,12 +23,15 @@ const trustStats = [
 
 export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { data: session, status } = useSession();
   const [mode, setMode] = useState<AuthMode>(initialMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const isLogin = mode === "signin";
@@ -35,6 +39,35 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
   const canSubmit =
     email.trim().length > 0 &&
     password.trim().length > 0;
+
+  useEffect(() => {
+    const providerError = searchParams.get("error");
+
+    if (providerError === "google_email_required") {
+      setMessage({ type: "error", text: "Your Google account must expose an email address to continue." });
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (status !== "authenticated") {
+      return;
+    }
+
+    if (session?.authError) {
+      setGoogleLoading(false);
+      setMessage({ type: "error", text: session.authError });
+      return;
+    }
+
+    if (!session?.backendToken || !session.user?.email) {
+      return;
+    }
+
+    localStorage.setItem("token", session.backendToken);
+    localStorage.setItem("userEmail", session.user.email);
+    localStorage.setItem("rememberSession", "true");
+    router.push("/dashboard");
+  }, [router, session, status]);
 
   const resetFormState = (nextMode: AuthMode) => {
     setMode(nextMode);
@@ -81,6 +114,21 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    setMessage(null);
+    setGoogleLoading(true);
+
+    try {
+      await signIn("google", { callbackUrl: "/dashboard" });
+    } catch (error: unknown) {
+      setGoogleLoading(false);
+      setMessage({
+        type: "error",
+        text: error instanceof Error ? error.message : "Google sign-in failed",
+      });
+    }
+  };
+
   return (
     <main className="relative flex h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(242,106,27,0.18),_transparent_34%),linear-gradient(135deg,_#fff8f2_0%,_#fffef9_45%,_#eef6ff_100%)] px-3 py-3 sm:px-4 sm:py-4 lg:px-6">
       <div className="pointer-events-none absolute inset-0">
@@ -99,7 +147,7 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
               Qurl AI
             </Link>
 
-            <div className="mt-6 max-w-lg">
+            <div key={`hero-${mode}`} className="auth-mode-panel mt-6 max-w-lg">
               <p className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/8 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.24em] text-primary">
                 Secure access flow
               </p>
@@ -141,7 +189,7 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
         <section className="flex items-center px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
           <div className="mx-auto w-full max-w-lg rounded-[28px] border border-black/5 bg-white/88 p-5 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.35)] backdrop-blur sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
+              <div key={`header-${mode}`} className="auth-mode-panel">
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-gray-400">Account access</p>
                 <h2 className="mt-2 text-2xl font-black tracking-[-0.04em] text-gray-950 sm:text-3xl">
                   {isLogin ? "Welcome back" : "Create your account"}
@@ -157,7 +205,7 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
                 <button
                   type="button"
                   onClick={() => resetFormState("signin")}
-                  className={`rounded-full px-3 py-1.5 text-xs font-bold transition sm:px-4 sm:text-sm ${
+                  className={`rounded-[22px] px-5 py-3 text-xs font-black uppercase tracking-[0.18em] transition duration-300 sm:text-sm ${
                     isLogin ? "bg-white text-gray-950 shadow-sm" : "text-gray-500"
                   }`}
                 >
@@ -166,7 +214,7 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
                 <button
                   type="button"
                   onClick={() => resetFormState("signup")}
-                  className={`rounded-full px-3 py-1.5 text-xs font-bold transition sm:px-4 sm:text-sm ${
+                  className={`rounded-[22px] px-5 py-3 text-xs font-black uppercase tracking-[0.18em] transition duration-300 sm:text-sm ${
                     !isLogin ? "bg-white text-gray-950 shadow-sm" : "text-gray-500"
                   }`}
                 >
@@ -178,9 +226,11 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
             <div className="mt-4">
               <button
                 type="button"
-                className="rounded-[20px] border border-black/8 bg-white px-4 py-2.5 text-xs font-semibold text-gray-700 transition hover:border-primary/30 hover:bg-primary/5 sm:text-sm"
+                onClick={handleGoogleSignIn}
+                disabled={googleLoading}
+                className="flex w-full items-center justify-center rounded-[22px] border border-black/8 bg-white px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-gray-700 transition duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/5 disabled:cursor-not-allowed disabled:opacity-60 sm:text-sm"
               >
-                Continue with Google
+                {googleLoading ? "Connecting to Google..." : "Continue with Google"}
               </button>
             </div>
 
@@ -190,7 +240,7 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
               <span className="h-px flex-1 bg-gray-200" />
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-3.5">
+            <form key={`form-${mode}`} onSubmit={handleSubmit} className="auth-mode-panel space-y-3.5">
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-bold text-gray-700">
                   Email address
@@ -234,17 +284,21 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
                 </div>
               </div>
 
-              {isLogin && (
-                <label className="flex items-center gap-3 rounded-[20px] border border-black/5 bg-[#faf7f4] px-4 py-2.5 text-xs text-gray-600 sm:text-sm">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(event) => setRememberMe(event.target.checked)}
-                    className="h-4 w-4 rounded border-gray-300 accent-primary"
-                  />
-                  Keep me signed in on this device
-                </label>
-              )}
+              <div className="auth-row-shell min-h-[52px]">
+                {isLogin ? (
+                  <label className="auth-row-enter flex items-center gap-3 rounded-[20px] border border-black/5 bg-[#faf7f4] px-4 py-2.5 text-xs text-gray-600 sm:text-sm">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(event) => setRememberMe(event.target.checked)}
+                      className="h-4 w-4 rounded border-gray-300 accent-primary"
+                    />
+                    Keep me signed in on this device
+                  </label>
+                ) : (
+                  <div aria-hidden="true" className="h-[52px] rounded-[20px] border border-transparent" />
+                )}
+              </div>
 
               {message && (
                 <div
@@ -260,7 +314,7 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
 
               <button
                 type="submit"
-                disabled={loading || !canSubmit}
+                disabled={loading || googleLoading || !canSubmit}
                 className="flex w-full items-center justify-center rounded-[22px] bg-gray-950 px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-white transition hover:-translate-y-0.5 hover:bg-primary disabled:cursor-not-allowed disabled:opacity-45 sm:text-sm"
               >
                 {loading ? "Processing..." : isLogin ? "Sign in" : "Create account"}
