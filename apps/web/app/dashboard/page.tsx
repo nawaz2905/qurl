@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
-import { useRouter } from "next/navigation";
+import { getSession, signOut } from "next-auth/react";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
@@ -171,7 +171,6 @@ function SectionHeader({ eyebrow, title, description, action }: { eyebrow: strin
 }
 
 export default function Dashboard() {
-  const router = useRouter();
   const [links, setLinks] = useState<LinkItem[]>([]);
   const [inputUrl, setInputUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -186,25 +185,50 @@ export default function Dashboard() {
   const [toast, setToast] = useState<ToastState>(null);
 
   useEffect(() => {
-    const savedTab = localStorage.getItem("dashboardTab") as DashboardTab | null;
-    const savedToken = localStorage.getItem("token");
-    const savedUserEmail = localStorage.getItem("userEmail");
+    async function bootstrapDashboard() {
+      const savedTab = localStorage.getItem("dashboardTab") as DashboardTab | null;
+      const savedToken = localStorage.getItem("token");
+      const savedUserEmail = localStorage.getItem("userEmail");
 
-    if (savedTab && dashboardTabs.some((tab) => tab.id === savedTab)) {
-      setActiveTab(savedTab);
-    }
-    const savedSidebarState = localStorage.getItem("dashboardSidebarCollapsed");
-    if (savedSidebarState === "true") {
-      setSidebarCollapsed(true);
-    }
-    if (savedUserEmail) setUserEmail(savedUserEmail);
-    if (!savedToken) {
-      setFetching(false);
-      return;
+      if (savedTab && dashboardTabs.some((tab) => tab.id === savedTab)) {
+        setActiveTab(savedTab);
+      }
+
+      const savedSidebarState = localStorage.getItem("dashboardSidebarCollapsed");
+      if (savedSidebarState === "true") {
+        setSidebarCollapsed(true);
+      }
+
+      if (savedUserEmail) {
+        setUserEmail(savedUserEmail);
+      }
+
+      if (savedToken) {
+        setToken(savedToken);
+        await fetchLinks(savedToken);
+        return;
+      }
+
+      const session = await getSession();
+      const sessionToken = session?.backendToken;
+      const sessionEmail = session?.user?.email ?? null;
+
+      if (!sessionToken) {
+        setFetching(false);
+        return;
+      }
+
+      localStorage.setItem("token", sessionToken);
+      if (sessionEmail) {
+        localStorage.setItem("userEmail", sessionEmail);
+        setUserEmail(sessionEmail);
+      }
+
+      setToken(sessionToken);
+      await fetchLinks(sessionToken);
     }
 
-    setToken(savedToken);
-    void fetchLinks(savedToken);
+    void bootstrapDashboard();
   }, []);
 
   useEffect(() => {
@@ -310,7 +334,9 @@ export default function Dashboard() {
     localStorage.removeItem("token");
     localStorage.removeItem("dashboardTab");
     localStorage.removeItem("userEmail");
-    router.push("/login");
+    localStorage.removeItem("rememberSession");
+    setToken(null);
+    void signOut({ callbackUrl: "/login" });
   }
 
   const filteredLinks = links.filter((link) => {

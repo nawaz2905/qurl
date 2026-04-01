@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { signupSchema, signinSchema } from "../schemas/auth.schema";
-import { signin, signup } from "../services/auth.services";
+import { signin, signinWithGoogle, signup } from "../services/auth.services";
 
 
 export async function signupHandler(req: Request, res: Response) {
@@ -57,4 +57,30 @@ export async function signinHandler(req: Request, res: Response) {
         })
     }
 
+}
+
+export async function googleSigninHandler(req: Request, res: Response) {
+    try {
+        const email = typeof req.body?.email === "string" ? req.body.email.trim() : "";
+
+        if (!email) {
+            return res.status(400).json({
+                success: false,
+                error: "Email is required",
+            });
+        }
+
+        const token = await signinWithGoogle(email);
+
+        return res.status(200).json({
+            success: true,
+            token,
+            message: "Google sign in successful",
+        });
+    } catch (error: any) {
+        return res.status(400).json({
+            success: false,
+            error: error.message,
+        });
+    }
 }
