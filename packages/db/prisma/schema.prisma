@@ -21,7 +21,7 @@ model User {
 
   urls         Url[]
 
-  @@index([createdAt])
+  @@index([createdAt])`1
 }
 
 model Url {

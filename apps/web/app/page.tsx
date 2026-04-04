@@ -177,7 +177,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-[92%] max-w-7xl relative mx-auto my-20 p-12 md:p-24 bg-orange-50 rounded-[48px] overflow-hidden flex flex-col lg:flex-row items-center gap-16 border border-orange-100 shadow-xl shadow-orange-500/5">
+      <section className="w-[92%] max-w-7xl relative mx-auto my-20 p-12 md:p-24 bg-white rounded-[48px] overflow-hidden flex flex-col lg:flex-row items-center gap-16 border border-orange-100 shadow-xl shadow-orange-500/5">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-primary/10 via-transparent to-transparent opacity-50 blur-[100px]" />
 
         <div className="relative z-10 flex-1 text-center lg:text-left">
