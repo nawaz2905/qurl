@@ -204,7 +204,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative z-10 grid grid-cols-2 gap-8 w-full lg:w-auto">
+        <div className="relative z-10 grid w-full gap-6 sm:grid-cols-2 lg:w-[30rem]">
           {[
             { label: "Fraud Blocked", val: "1.2M+" },
             { label: "Active Links", val: "85K+" },
@@ -219,7 +219,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="relative w-full min-h-54 overflow-hidden border-t-2 border-gray-300 bg-[radial-gradient(circle_at_top_left,_rgba(242,106,27,0.18),_transparent_34%),linear-gradient(135deg,_#fff8f2_0%,_#fffef9_45%,_#eef6ff_100%)] px-8 py-16 text-gray-500">
+      <footer className="relative w-full px-6 pb-12 pt-4 text-gray-500">
         <div
           className="pointer-events-none absolute inset-0 opacity-40"
           style={{
@@ -228,11 +228,11 @@ export default function Home() {
             backgroundSize: "34px 34px",
           }}
         />
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-8 font-semibold md:flex-row">
-          <div className="flex items-center gap-2">
+        <div className="relative mx-auto grid w-[92%] max-w-7xl gap-6 overflow-hidden rounded-[40px] border border-gray-200 bg-[radial-gradient(circle_at_top_left,_rgba(242,106,27,0.18),_transparent_34%),linear-gradient(135deg,_#fff8f2_0%,_#fffef9_45%,_#eef6ff_100%)] px-8 py-10 text-center font-semibold shadow-xl shadow-orange-500/5 md:grid-cols-[auto_1fr_auto] md:items-center md:text-left">
+          <div className="flex items-center justify-center gap-2 md:justify-start">
           <span className="text-gray-900 font-bold">Qurl AI © 2026</span>
         </div>
-        <div className="flex gap-8 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm">
           <a href="#" className="hover:text-primary transition-colors">Twitter</a>
           <a href="#" className="hover:text-primary transition-colors">GitHub</a>
           <a href="#" className="hover:text-primary transition-colors">Documentation</a>
