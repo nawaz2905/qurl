@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
@@ -346,7 +346,11 @@ export function AuthScreen({ initialMode = "signin" }: { initialMode?: AuthMode 
 }
 
 export default function LoginPage() {
-  return <AuthScreen initialMode="signin" />;
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-[#fff8f2]" />}>
+      <AuthScreen initialMode="signin" />
+    </Suspense>
+  );
 }
 
 
