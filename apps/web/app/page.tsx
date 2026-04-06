@@ -220,14 +220,6 @@ export default function Home() {
       </section>
 
       <footer className="relative w-full px-6 pb-12 pt-4 text-gray-500">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(17,24,39,0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(17,24,39,0.14) 1px, transparent 1px)",
-            backgroundSize: "34px 34px",
-          }}
-        />
         <div className="relative mx-auto grid w-[92%] max-w-7xl gap-6 overflow-hidden rounded-[40px] border border-gray-200 bg-[radial-gradient(circle_at_top_left,_rgba(242,106,27,0.18),_transparent_34%),linear-gradient(135deg,_#fff8f2_0%,_#fffef9_45%,_#eef6ff_100%)] px-8 py-10 text-center font-semibold shadow-xl shadow-orange-500/5 md:grid-cols-[auto_1fr_auto] md:items-center md:text-left">
           <div className="flex items-center justify-center gap-2 md:justify-start">
           <span className="text-gray-900 font-bold">Qurl AI © 2026</span>
