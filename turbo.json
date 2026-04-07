@@ -1,7 +1,7 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "tui",
-  "globalEnv": ["DATABASE_URL", "NEXT_PUBLIC_API_URL", "REDIS_URL", "GEMINI_API_KEY"],
+  "globalEnv": ["DATABASE_URL", "NEXT_PUBLIC_API_URL", "REDIS_URL", "GEMINI_API_KEY", "GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "NEXTAUTH_SECRET", "JWT_PASSCODE"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

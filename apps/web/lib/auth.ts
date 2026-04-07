@@ -2,6 +2,11 @@ import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const nextAuthSecret = process.env.NEXTAUTH_SECRET;
+
+if (process.env.NODE_ENV === "production" && !nextAuthSecret) {
+  throw new Error("NEXTAUTH_SECRET is required in production");
+}
 
 async function exchangeGoogleUser(email: string) {
   const response = await fetch(`${API_BASE_URL}/api/v1/oauth/google`, {
@@ -21,6 +26,7 @@ async function exchangeGoogleUser(email: string) {
 }
 
 export const authOptions: NextAuthOptions = {
+  secret: nextAuthSecret,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
