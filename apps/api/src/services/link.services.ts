@@ -2,6 +2,8 @@ import { prisma } from "@repo/db/client";
 import { fraudScore } from "@repo/fraud-engine/fraud";
 import { generateShortCode } from "../utils/nanoid";
 
+const APP_BASE_URL = (process.env.BASE_URL || "http://localhost:5000").replace(/\/+$/, "");
+
 interface createShortLinkInput {
     url: string,
     userId: string
@@ -42,7 +44,7 @@ export async function createShortLink({
     return {
         id: saved.id,
         originalUrl: saved.originalUrl,
-        shortlink: `http://localhost:5000/${saved.shortCode}`,
+        shortlink: `${APP_BASE_URL}/${saved.shortCode}`,
         shortCode: saved.shortCode,
         fraudScore: saved.fraudScore,
         fraudInfo: fraud, // Temporary for debug
