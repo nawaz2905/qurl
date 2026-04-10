@@ -118,3 +118,13 @@ Stack: ApiError: {"error":{"code":404,"message":"models/gemini-1.5-flash is not 
     at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
     at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:15:19)
     at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
+[2026-04-10T14:54:07.573Z] AI Error: {"error":{"code":503,"message":"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.","status":"UNAVAILABLE"}}
+Stack: ApiError: {"error":{"code":503,"message":"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.","status":"UNAVAILABLE"}}
+    at throwErrorIfNotOK (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12352:30)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:12055:13
+    at Models.generateContent (D:\cohort-3\qurl\node_modules\.pnpm\@google+genai@1.42.0\node_modules\@google\genai\dist\node\index.cjs:13456:24)
+    at aiCheck (D:\cohort-3\qurl\packages\fraud-engine\dist\ai.js:29:26)
+    at fraudScore (D:\cohort-3\qurl\packages\fraud-engine\dist\scorer.js:8:22)
+    at createShortLink (D:\cohort-3\qurl\apps\api\src\services\link.services.ts:17:19)
+    at createLink (D:\cohort-3\qurl\apps\api\src\controllers\link.routes.ts:16:24)
