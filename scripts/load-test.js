@@ -10,12 +10,12 @@ const apiTrend = new Trend("api_response_time");
 export const options = {
   stages: [
     { duration: "2m",  target: 100  },  // Warm-up
+    { duration: "5m",  target: 500  },  // Ramp up to 500 users
+    { duration: "8m",  target: 500  },  // Hold at 500 — observe stability
     { duration: "5m",  target: 1000 },  // Ramp up to 1k users
-    { duration: "10m", target: 1000 },  // Hold at 1k — observe stability
-    { duration: "5m",  target: 3000 },  // Ramp up to 3k users
-    { duration: "10m", target: 3000 },  // Hold at 3k — observe stability
-    { duration: "5m",  target: 5000 },  // Ramp up to 5k users
-    { duration: "10m", target: 5000 },  // Hold at 5k — peak load
+    { duration: "8m",  target: 1000 },  // Hold at 1k — observe stability
+    { duration: "5m",  target: 1500 },  // Ramp up to 1.5k users (safe for 8GB)
+    { duration: "8m",  target: 1500 },  // Hold at 1.5k — peak load
     { duration: "3m",  target: 0    },  // Ramp down
   ],
   thresholds: {
